@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>纯白毛玻璃风格个人博客</title>
+    <!-- 引入Font Awesome图标库 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* 全局重置 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* 页面背景（用淡色纹理图突出毛玻璃效果） */
+        body {
+            min-height: 100vh;
+            background: url('https://picsum.photos/id/1076/1920/1080') no-repeat center center fixed;
+            background-size: cover;
+            padding: 20px;
+        }
+
+        /* 毛玻璃通用样式（核心） */
+        .glass {
+            /* 半透明白色背景 */
+            background: rgba(255, 255, 255, 0.7);
+            /* 模糊效果（核心属性），webkit前缀兼容Chrome/Safari */
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            /* 细边框（浅白色半透明） */
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            /* 大圆角 */
+            border-radius: 24px;
+            /* 轻微阴影增强层次感 */
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+        }
+
+        /* 容器：居中+限制最大宽度 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        /* 顶部导航栏 */
+        header {
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* 博客标题 */
+        .blog-title {
+            font-size: 28px;
+            font-weight: 600;
+            color: #333;
+            letter-spacing: 1px;
+        }
+
+        /* 导航菜单 */
+        .nav-menu {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        /* 导航项：图标上+文字下 */
+        .nav-item {
+            display: flex;
+            /* 垂直排列（核心） */
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 8px;
+            cursor: pointer;
+            color: #444;
+            transition: all 0.3s ease;
+            border-radius: 16px;
+        }
+
+        /* 导航项hover效果 */
+        .nav-item:hover {
+            background: rgba(255, 255, 255, 0.9);
+            color: #000;
+        }
+
+        /* 导航图标 */
+        .nav-icon {
+            font-size: 24px;
+        }
+
+        /* 导航文字 */
+        .nav-text {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        /* 主要内容区 */
+        main {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        /* 博客内容卡片 */
+        .blog-content {
+            flex: 3;
+            min-width: 300px;
+            padding: 32px;
+        }
+
+        /* 侧边栏 */
+        .sidebar {
+            flex: 1;
+            min-width: 250px;
+            padding: 24px;
+        }
+
+        /* 博客文章标题 */
+        .post-title {
+            font-size: 32px;
+            color: #222;
+            margin-bottom: 16px;
+        }
+
+        /* 博客文章元信息 */
+        .post-meta {
+            color: #666;
+            margin-bottom: 24px;
+            font-size: 14px;
+        }
+
+        /* 博客文章内容 */
+        .post-content {
+            color: #444;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        /* 侧边栏标题 */
+        .sidebar-title {
+            font-size: 20px;
+            color: #222;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        /* 侧边栏列表 */
+        .sidebar-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        /* 侧边栏列表项 */
+        .sidebar-item {
+            padding: 8px 12px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .sidebar-item:hover {
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        /* 响应式：小屏幕导航堆叠 */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .nav-menu {
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 顶部导航栏（毛玻璃） -->
+        <header class="glass">
+            <div class="blog-title">我的个人博客</div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <i class="fas fa-home nav-icon"></i>
+                    <span class="nav-text">首页</span>
+                </li>
+                <li class="nav-item">
+                    <i class="fas fa-book nav-icon"></i>
+                    <span class="nav-text">文章</span>
+                </li>
+                <li class="nav-item">
+                    <i class="fas fa-tag nav-icon"></i>
+                    <span class="nav-text">标签</span>
+                </li>
+                <li class="nav-item">
+                    <i class="fas fa-user nav-icon"></i>
+                    <span class="nav-text">关于我</span>
+                </li>
+                <li class="nav-item">
+                    <i class="fas fa-envelope nav-icon"></i>
+                    <span class="nav-text">联系</span>
+                </li>
+            </ul>
+        </header>
+
+        <!-- 主要内容区 -->
+        <main>
+            <!-- 博客内容卡片（毛玻璃） -->
+            <section class="blog-content glass">
+                <h1 class="post-title">毛玻璃风格博客设计实践</h1>
+                <div class="post-meta">发布于 2026-03-01 · 分类：前端开发 · 阅读：128</div>
+                <div class="post-content">
+                    <p>毛玻璃（Glassmorphism）是一种流行的UI设计风格，核心特征是半透明、模糊效果、细边框和圆角，能营造出轻盈、现代的视觉体验。</p>
+                    <br>
+                    <p>在实现毛玻璃效果时，核心CSS属性是 <code>backdrop-filter: blur()</code>，配合半透明背景色（rgba）、细边框和大圆角，就能打造出经典的毛玻璃质感。</p>
+                    <br>
+                    <p>本博客采用纯白系毛玻璃风格，顶部导航栏设计为图标在上、文字在下的布局，兼顾美观与实用性，同时适配移动端响应式显示。</p>
+                </div>
+            </section>
+
+            <!-- 侧边栏（毛玻璃） -->
+            <aside class="sidebar glass">
+                <h3 class="sidebar-title">热门标签</h3>
+                <ul class="sidebar-list">
+                    <li class="sidebar-item">前端开发</li>
+                    <li class="sidebar-item">CSS设计</li>
+                    <li class="sidebar-item">毛玻璃风格</li>
+                    <li class="sidebar-item">响应式布局</li>
+                    <li class="sidebar-item">UI/UX</li>
+                </ul>
+
+                <h3 class="sidebar-title" style="margin-top: 24px;">最新文章</h3>
+                <ul class="sidebar-list">
+                    <li class="sidebar-item">CSS毛玻璃效果详解</li>
+                    <li class="sidebar-item">Flex布局实战指南</li>
+                    <li class="sidebar-item">响应式设计最佳实践</li>
+                </ul>
+            </aside>
+        </main>
+    </div>
+</body>
+</html>
